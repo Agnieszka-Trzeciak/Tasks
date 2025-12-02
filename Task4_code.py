@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path
 from yaml import safe_load
 import numpy as np
 import pyarrow.parquet as pa
@@ -9,7 +10,7 @@ import matplotlib
 st.title("Task4 Trzeciak Agnieszka")
 st.set_page_config(layout="wide")
 
-DATA = st.selectbox("Data set", ['DATA1', 'DATA2', 'DATA3'])
+DATA = Path(__file__).parent+'//'st.selectbox("Data set", ['DATA1', 'DATA2', 'DATA3'])
 
 Users = pd.read_csv(DATA+r'\users.csv')
 
@@ -74,3 +75,4 @@ with col2:
     ax.set_xlabel('Date')
     ax.set_ylabel('Revenue')
     st.pyplot(fig)
+
