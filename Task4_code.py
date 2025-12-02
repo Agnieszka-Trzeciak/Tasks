@@ -10,7 +10,8 @@ import matplotlib
 st.title("Task4 Trzeciak Agnieszka")
 st.set_page_config(layout="wide")
 
-DATA = Path(__file__)+'//'+st.selectbox("Data set", ['DATA1', 'DATA2', 'DATA3'])
+DATA = str(Path(__file__))+st.selectbox("Data set", ['DATA1', 'DATA2', 'DATA3'])
+st.write(DATA)
 
 Users = pd.read_csv(DATA+r'\users.csv')
 
@@ -75,6 +76,7 @@ with col2:
     ax.set_xlabel('Date')
     ax.set_ylabel('Revenue')
     st.pyplot(fig)
+
 
 
 
