@@ -10,16 +10,17 @@ import matplotlib
 st.title("Task4 Trzeciak Agnieszka")
 st.set_page_config(layout="wide")
 
-DATA = str(Path(__file__).parent)+st.selectbox("Data set", ['DATA1', 'DATA2', 'DATA3'])
-st.write(DATA)
+DATA = st.selectbox("Data set", ['DATA1', 'DATA2', 'DATA3'])
+path = str(Path(__file__).parent) / DATA
+st.write(path)
 
-Users = pd.read_csv(DATA+r'\users.csv')
+Users = pd.read_csv(path+r'\users.csv')
 
-with open(DATA+r'\books.yaml','r') as books_yaml:
+with open(path+r'\books.yaml','r') as books_yaml:
     Books = pd.json_normalize(safe_load(books_yaml))
 Books.columns = [column[1:] for column in Books.columns]
 
-Orders = pa.read_table(DATA+r'\orders.parquet').to_pandas()
+Orders = pa.read_table(path+r'\orders.parquet').to_pandas()
 output_formula = r'\g<d>/\g<m>/\g<y>'
 Orders['date'] = pd.to_datetime(Orders['timestamp'].str.replace(r'[\d:]+(?: [APap]\.?[Mm]\.?)?[ ,;]+(?P<d>\d{1,2})-(?P<m>\w+)-\d{2}(?P<y>\d{2})',output_formula,regex=True).str.replace(
                                     r'(?P<m>\d{2})/(?P<d>\d{2})/(?P<y>\d{2})[ ,;]+[\d:]+(?: [APap]\.?[Mm]\.?)?',output_formula,regex=True).str.replace(
@@ -76,6 +77,7 @@ with col2:
     ax.set_xlabel('Date')
     ax.set_ylabel('Revenue')
     st.pyplot(fig)
+
 
 
 
