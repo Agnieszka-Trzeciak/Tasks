@@ -66,14 +66,13 @@ st.metric(label='Most sucessful author', value=f"{author:}",height='stretch')
 st.metric(label='Best buyer', value=f"{best_buyer:}")
 st.divider()
 
-col1, col2, col3 = st.columns([1,4,1])
-with col2:
-    fig,ax = plt.subplots()
-    ax.plot(Orders.groupby(by='date')['paid_price'].sum())
-    ax.set_title('Daily revenue')
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Revenue')
-    st.pyplot(fig)
+fig,ax = plt.subplots()
+ax.plot(Orders.groupby(by='date')['paid_price'].sum())
+ax.set_title('Daily revenue')
+ax.set_xlabel('Date')
+ax.set_ylabel('Revenue')
+st.pyplot(fig)
+
 
 
 
