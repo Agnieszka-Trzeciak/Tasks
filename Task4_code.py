@@ -1,12 +1,12 @@
 import streamlit as st
 import pandas as pd
-from pathlib import Path
 from yaml import safe_load
 import numpy as np
 import pyarrow.parquet as pa
 import matplotlib.pyplot as plt
 import matplotlib
 
+st.write('WORKING')
 st.title("Task4 Trzeciak Agnieszka")
 st.set_page_config(layout="wide")
 
@@ -76,6 +76,7 @@ with col2:
     ax.set_xlabel('Date')
     ax.set_ylabel('Revenue')
     st.pyplot(fig)
+
 
 
 
